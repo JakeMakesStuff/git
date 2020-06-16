@@ -86,15 +86,15 @@ If you use '--squash', the merge direction doesn't always have to be
 forward; you can use this command to go back in time from v2.5 to v2.4,
 for example.  If your merge introduces a conflict, you can resolve it in
 the usual ways.
-	
+
 pull::
 	Exactly like 'merge', but parallels 'git pull' in that
 	it fetches the given ref from the specified remote
 	repository.
-	
+
 push::
 	Does a 'split' (see below) using the <prefix> supplied
-	and then does a 'git push' to push the result to the 
+	and then does a 'git push' to push the result to the
 	repository and ref. This can be used to push your
 	subtree to different branches of the remote repository.
 
@@ -248,16 +248,16 @@ git-subtree repository as a subdirectory of your already existing
 git-extensions repository in ~/git-extensions/:
 
 	$ git subtree add --prefix=git-subtree --squash \
-		git://github.com/apenwarr/git-subtree.git master
+		git://github.com/apenwarr/git-subtree.git main
 
-'master' needs to be a valid remote ref and can be a different branch
+'main' needs to be a valid remote ref and can be a different branch
 name
 
 You can omit the --squash flag, but doing so will increase the number
 of commits that are included in your local repository.
 
 We now have a ~/git-extensions/git-subtree directory containing code
-from the master branch of git://github.com/apenwarr/git-subtree.git
+from the main branch of git://github.com/apenwarr/git-subtree.git
 in our git-extensions repository.
 
 EXAMPLE 2. Extract a subtree using commit, merge and pull
@@ -269,7 +269,7 @@ First, get your own copy of the git.git repository:
 	$ cd test-git
 
 gitweb (commit 1130ef3) was merged into git as of commit
-0a8f4f0, after which it was no longer maintained separately. 
+0a8f4f0, after which it was no longer maintained separately.
 But imagine it had been maintained separately, and we wanted to
 extract git's changes to gitweb since that time, to share with
 the upstream.  You could do this:
@@ -278,8 +278,8 @@ the upstream.  You could do this:
         	0a8f4f0^.. --onto=1130ef3 --rejoin \
         	--branch gitweb-latest
         $ gitk gitweb-latest
-        $ git push git@github.com:whatever/gitweb.git gitweb-latest:master
-        
+        $ git push git@github.com:whatever/gitweb.git gitweb-latest:main
+
 (We use '0a8f4f0^..' because that means "all the changes from
 0a8f4f0 to the current version, including 0a8f4f0 itself.")
 
@@ -295,7 +295,7 @@ And you can merge changes back in from the upstream project just
 as easily:
 
 	$ git subtree pull --prefix=gitweb \
-		git@github.com:whatever/gitweb.git master
+		git@github.com:whatever/gitweb.git main
 
 Or, using '--squash', you can actually rewind to an earlier
 version of gitweb:
@@ -313,7 +313,7 @@ And fast forward again:
 	$ git subtree merge --prefix=gitweb --squash gitweb-latest
 
 And notice that your change is still intact:
-	
+
 	$ ls -l gitweb/myfile
 
 And you can split it out and look at your changes versus
@@ -338,7 +338,7 @@ Back in your original directory:
 
 Then push the new branch onto the new empty repository:
 
-	$ git push <new-repo> split:master
+	$ git push <new-repo> split:main
 
 
 AUTHOR
